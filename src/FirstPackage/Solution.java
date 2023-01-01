@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Solution {
+public class Solution implements Test{
     //    Объект для ввода информации через консоль
-    private Object bufferedReader() throws IOException {
+    public Object bufferedReader() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         return bufferedReader.readLine();
     }
