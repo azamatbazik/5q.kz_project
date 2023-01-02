@@ -17,4 +17,7 @@ public interface Test {
     public Float sumValueArray() throws IOException;
     public Object secondBigValue() throws IOException;
     public String restoreString();
+    public boolean isPalindrome(int x);
+    public int numberOfSteps(int num);
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2);
 }

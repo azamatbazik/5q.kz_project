@@ -3,7 +3,7 @@ package FirstPackage;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class AdditionalTasks implements Test{
+public class AdditionalTasks implements Test {
     public String restoreString(String s, int[] indices) {
         String result = null;
         char[] copyResult = new char[indices.length];
@@ -14,18 +14,65 @@ public class AdditionalTasks implements Test{
         return result;
     }
 
+    public boolean isPalindrome(int x) {
+        String copy = String.valueOf(x);
+        char[] value = copy.toCharArray();
+        char[] copyValue = new char[value.length];
+        String palindromeValue;
+        boolean TRUE;
+        int j = 0;
+        for (int i = value.length; i > 0; i--, j++) {
+            copyValue[j] = value[i - 1];
+        }
+        palindromeValue = String.valueOf(copyValue);
+        if (copy.equals(palindromeValue)) {
+            TRUE = true;
+        } else {
+            TRUE = false;
+        }
+        return TRUE;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+    public int numberOfSteps(int num) {
+        int result = 0;
+        int copyNum = num;
+        while (copyNum != 0) {
+            if (copyNum % 2 == 0) {
+                copyNum = copyNum / 2;
+                result++;
+            } else {
+                copyNum--;
+                result++;
+            }
+        }
+        return result;
+    }
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+        boolean result = false;
+        String copyWord1 = null;
+        String copyWord2 = null;
+        for (int i = 0; i < word1.length; i++) {
+            copyWord1 += word1[i];
+        }
+        for (int i = 0; i < word2.length; i++) {
+            copyWord2 += word2[i];
+        }
+        if(copyWord1.equals(copyWord2)){
+            result = true;
+        }
+        return result;
+    }public int sumOddLengthSubarrays(int[] arr) {
+        int result = 0;
+        int arrayLength = arr.length;
+        for (int i = 0; i < arrayLength; i++) {
+            for (int j = i; j < arrayLength; j+=2) {
+                for (int k = i; k <= j; k++) {
+                    result += arr[k];
+                }
+            }
+        }
+        return result;
+    }
 
 
     @Override

@@ -137,4 +137,19 @@ public class Solution implements Test{
     public String restoreString() {
         return null;
     }
+
+    @Override
+    public boolean isPalindrome(int x) {
+        return false;
+    }
+
+    @Override
+    public int numberOfSteps(int num) {
+        return 0;
+    }
+
+    @Override
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+        return false;
+    }
 }
