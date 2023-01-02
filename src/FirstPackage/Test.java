@@ -16,4 +16,5 @@ public interface Test {
     public String replaceValue() throws IOException;
     public Float sumValueArray() throws IOException;
     public Object secondBigValue() throws IOException;
+    public String restoreString();
 }

@@ -132,4 +132,9 @@ public class Solution implements Test{
         }
         return array[arrayLength - 2];
     }
+
+    @Override
+    public String restoreString() {
+        return null;
+    }
 }
