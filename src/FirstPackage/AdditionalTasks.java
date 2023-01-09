@@ -1,7 +1,9 @@
 package FirstPackage;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+import java.nio.file.Files;
+import java.util.*;
 
 public class AdditionalTasks implements Test {
     public String restoreString(String s, int[] indices) {
@@ -47,6 +49,7 @@ public class AdditionalTasks implements Test {
         }
         return result;
     }
+
     public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
         boolean result = false;
         String copyWord1 = null;
@@ -57,21 +60,228 @@ public class AdditionalTasks implements Test {
         for (int i = 0; i < word2.length; i++) {
             copyWord2 += word2[i];
         }
-        if(copyWord1.equals(copyWord2)){
+        if (copyWord1.equals(copyWord2)) {
             result = true;
         }
         return result;
-    }public int sumOddLengthSubarrays(int[] arr) {
+    }
+
+    public int sumOddLengthSubArrays(int[] arr) {
         int result = 0;
         int arrayLength = arr.length;
         for (int i = 0; i < arrayLength; i++) {
-            for (int j = i; j < arrayLength; j+=2) {
+            for (int j = i; j < arrayLength; j += 2) {
                 for (int k = i; k <= j; k++) {
                     result += arr[k];
                 }
             }
         }
         return result;
+    }
+
+    public int removeElement(int[] nums, int val) {
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                nums[count++] = nums[i];
+            }
+        }
+        return count;
+    }
+
+    public int[] plusOne(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+            if (digits[i] < 9) {
+                digits[i]++;
+                return digits;
+            }
+            digits[i] = 0;
+        }
+
+        digits = new int[digits.length + 1];
+        digits[0] = 1;
+        return digits;
+    }
+
+    /*public int maxIceCream(int[] costs, int coins) {
+
+    }*/
+
+    public int removeDuplicates(int[] nums) {
+        if (nums.length == 0) return 0;
+        int addIndex = 1;
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] < nums[i + 1]) {
+                nums[i] = nums[i + 1];
+                addIndex++;
+            }
+        }
+        return addIndex;
+    }
+
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+
+        int[] arr = new int[nums1.length + nums2.length];
+        for (int i = 0, j = 0, k = 0; i < arr.length; i++) {
+            if (j == nums1.length)
+                for (; i < arr.length; i++)
+                    arr[i] = nums2[k++];
+            else if (k == nums2.length)
+                for (; i < arr.length; i++)
+                    arr[i] = nums1[j++];
+            else {
+                arr[i] = nums1[j] > nums2[k] ? nums2[k++] : nums1[j++];
+            }
+        }
+        int i = arr.length / 2;
+
+        return arr.length % 2 == 0 ? (double) (arr[i] + arr[i - 1]) / 2 : (double) arr[i];
+
+    }
+    public int reverse(int x) {
+        int copyValue = x;
+        double reverse = 0;
+        while(copyValue!=0){
+            int remainder = copyValue%10;
+            reverse = reverse*10+remainder;
+            copyValue=copyValue/10;
+        }
+        if(reverse> Integer.MAX_VALUE){
+            reverse=0;
+        }else if(reverse<Integer.MIN_VALUE){
+            reverse=0;
+        }
+        return (int)reverse;
+    }
+
+    public int divide(int dividend, int divisor) {
+        return (dividend)/(divisor);
+    }
+    public String toLowerCase(String s) {
+        return s.toLowerCase();
+    }
+    public int commonFactors(int a, int b) {
+        int minNumber = 0;
+        int result = 0;
+        if(a>b){
+            minNumber=b;
+        }else {
+            minNumber=a;
+        }
+        for (int i = 1; i <= minNumber; i++) {
+            if(a%i==0 && b%i==0){
+                result++;
+            }
+        }
+        return result;
+    }
+    public int maxProduct(int[] nums) {
+        Arrays.sort(nums);
+        return (nums[nums.length-1]-1)*(nums[nums.length-2]-1);
+    }
+
+    public String firstPalindrome(String[] words) {
+        String result = "";
+        for (int i = 0; i < words.length; i++) {
+            char[] copyValue = words[i].toCharArray();
+            char[] secondCopyValue = new char[copyValue.length];
+            int copyLength = copyValue.length-1;
+            for (int j = 0; j < secondCopyValue.length; j++, copyLength--) {
+                secondCopyValue[j] = copyValue[copyLength];
+            }
+            if(String.valueOf(copyValue).equals(String.valueOf(secondCopyValue))){
+                result = words[i];
+                break;
+            }
+        }
+        return result;
+    }
+
+    public String reversePrefix(String word, char ch) {
+        int index = word.indexOf(ch);
+        char[] copyValue = new char[word.length()];
+        for (int i = 0; i < copyValue.length; i++) {
+            if(index>=0){
+                copyValue[i] = word.charAt(index);
+                index--;
+            }else{
+                copyValue[i] = word.charAt(i);
+            }
+        }
+        return String.valueOf(copyValue);
+    }
+
+    public boolean halvesAreAlike(String s) {
+        int l=s.length();
+        int count1=0;
+        int count2=0;
+
+        for(int i=0;i<l/2;i++)
+        {
+            if( checkStr(s.charAt(i)))
+                count1++;
+        }
+
+        for(int i=l/2;i<l;i++)
+        {
+            if( checkStr(s.charAt(i)))
+                count2++;
+        }
+        if(count1==count2)
+            return true;
+
+        return false;
+
+    }
+
+    boolean checkStr(char ch)
+    {
+        if(ch=='a' || ch=='A' || ch=='e'|| ch=='E'||ch=='i'|| ch=='I'|| ch=='o'|| ch=='O'|| ch=='u'|| ch=='U')
+            return true;
+
+        return false;
+    }
+
+    public int prefixCount(String[] words, String pref) {
+        int result = 0;
+        for (int i = 0; i < words.length; i++) {
+            if(words[i].startsWith(pref)){
+                result++;
+            }
+        }
+        return result;
+    }
+    public int findNumbers(int[] nums) {
+        int result = 0;
+        for (int i = 0; i < nums.length; i++) {
+            String valueLength = String.valueOf(nums[i]);
+            if(valueLength.length()%2==0){
+                result++;
+            }
+        }
+        return result;
+    }
+    public boolean areOccurrencesEqual(String s)
+    {
+        int[] freq = new int[26];
+        int max = 0;
+        for(char ch : s.toCharArray())
+        {
+            int idxFromChar = ch-'a';
+            max = Math.max(max, ++freq[idxFromChar]);
+        }
+
+        for(int freqValue : freq)
+        {
+            if(freqValue != 0 && freqValue != max)
+                return false;
+        }
+        return true;
+
+    }
+
+    public int dataHashcode(File value) {
+        return value.hashCode();
     }
 
 
